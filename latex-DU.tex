@@ -1,0 +1,132 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+% PAGE DIMENSION
+%\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage[margin=2cm,headsep=0.8cm,headheight=13pt]{geometry}
+
+% ENCODING, LANGUAGE
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+
+% GRAPHICS
+\usepackage{graphicx,graphics}
+
+%Head/Foot Fancy
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhead[L]{\textbf{DÚ 2}}
+\fancyhead[R]{NOFY162 Matematika pro fyziky 2, \textbf{Ladislav Trnka}}
+\fancyfoot[C]{\bfseries \thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%JEn tak
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% HYPERTEXT, SOURCE CODE SPECIALS
+\usepackage[unicode]{hyperref}
+\usepackage[active]{srcltx} % use TeX-souce-specials-mode
+
+
+% UNITS, TYPESETTING TENSORS
+\usepackage{units}
+\usepackage{tensor}
+\usepackage{accents}
+
+% COMPACT LIST ENVIRONMENT
+\usepackage{enumitem}
+
+% LINE NUMBERS
+\usepackage{lineno}
+
+% TABLE OF CONTENTS IN TWO COLUMNS
+% \usepackage[toc]{multitoc} % It seems that it does not work with amsart
+% the workaround is the command
+% \addtocontents{toc}{\protect\begin{multicols}{2}} % workaround for table of contents in two columns in amsart documentclass
+% see below
+\usepackage{multicol}
+
+% SELECTIVELY INCLUDE/EXCLUDE PARTS OF TEXT
+\usepackage{comment}
+
+% FLOAT BARRIER
+\usepackage{placeins}
+
+\input{macros-experimental}
+
+\begin{document}
+
+
+Máme funkci $u(x,y)$:
+\begin{equation}
+\boxed{
+u(x,y) = x^2-y^2+5x+y-\frac{y}{x^2+y^2}.
+}
+\end{equation}
+Protože $(x,y) \neq (0,0)$, funkce $u(x,y)$ je definována na oblasti $\mathbb{R}^{2}\setminus\lbrace 0\rbrace$, navíc je $u(x,y) \in \mathrm{C}^{2}(\mathbb{R}^{2}\setminus\lbrace 0\rbrace)$.
+\begin{description}
+\item[(1)] Zadaná funkce $u(x,y)$ je harmonická na $\mathbb{R}^{2}\setminus\lbrace 0\rbrace$:
+\begin{equation}
+\begin{split}
+\Delta u &= \ppd u x + \ppd u y  =  \frac{\partial}{\partial x} \left( 2 x+5 +\frac{2 x y}{\left(x^{2}+y^{2}\right)^{2}} \right) +
+\frac{\partial}{\partial y} \left( -2y+1-\frac{x^{2}-y^{2}}{\left(x^{2}+y^{2} \right)^{2}}\right) =\\
+ & = \dfrac{4y(x^{2}+y^{2})-8yx^{2}+4y(x^{2}-y^{2})}{(x^{2}+y^{2})^{3}} =0. \\
+\end{split}
+\end{equation}
+Harmonicky sdružená funkce $v(x,y)$ splňuje Cauchy-Riemannovy podmínky:
+\begin{equation}
+\label{CR}
+\begin{split}
+\pd v y & = \pd u x =  2 x+5 +\frac{2 x y}{\left(x^{2}+y^{2}\right)^{2}} ,\\
+\pd v x & = -\pd u y = 2y-1+\frac{x^{2}-y^{2}}{\left(x^{2}+y^{2} \right)^{2}} .\\
+\end{split}
+\end{equation}
+Integrací první rovnice v $\eqref{CR}$ získáváme:
+\begin{equation}
+v(x,y)= \int 2 x+5 +\frac{2 x y}{\left(x^{2}+y^{2}\right)^{2}} \diff y = 2xy+5y-\dfrac{x}{x^{2}+y^{2}}+C(x),
+\end{equation}
+kde $C(x)$ je funkce. Dosazením do druhé dostáváme:
+\begin{equation}
+\begin{split}
+\pd v x & = -\pd u y  ,\\
+2y -\dfrac{y^{2}-x^{2}}{(x^{2}+y^{2})^{2}} +C'(x)& = 2y-1+\frac{x^{2}-y^{2}}{\left(x^{2}+y^{2} \right)^{2}} ,\\
+C'(x) & = -1 ,\\
+C(x) & = -x+C .\\
+\end{split}
+\end{equation}
+Harmonicky sdružená funkce k $v(x,y)$ je:
+\begin{equation}
+\boxed{
+v(x,y) = 2xy+5y-\dfrac{x}{x^{2}+y^{2}}-x+C .
+}
+\end{equation}
+\item[(2)] Nalezená funkce $v(x,y)$ je skutečně harmonická na $\mathbb{R}^{2}\setminus\lbrace 0\rbrace$:
+\begin{equation}
+\begin{split}
+\Delta v &= \ppd v x + \ppd v y  =  \frac{\partial}{\partial x}
+\left( 2y - \frac{y^{2}-x^{2}}{(x^{2}+y^{2})^{2}} -1 \right)+\frac{\partial}{\partial y} \left(2x+5 +\frac{2xy}{(x^{2}+y^{2})^{2}} \right) =  \\
+& = \dfrac{4x(x^{2}+y^{2})-4x(x^{2}-y^{2})-8xy^{2}}{(x^{2}+y^{2})^{3}}=0 .\\
+\end{split}
+\end{equation}
+\item[(3)] Explicitní tvar funkce $f(z)$ definované z $u$ a $v$:
+\begin{equation}
+\begin{split}
+f(z) & =u(\operatorname{Re} z,\operatorname{Im} z)+ v(\operatorname{Re} z,\operatorname{Im} z) = u(x,y)+v(x,y) ,\\
+f(z) & = x^2-y^2+5x+y-\frac{y}{x^2+y^2} +i (2xy+5y-\dfrac{x}{x^{2}+y^{2}}-x+C) ,\\
+f(z) & = (x^{2}-y^{2}+2xyi)+5(x+iy)-\frac{y+ix}{x^{2}+y^{2}}+y-ix+iC ,\\
+f(z) & = z^{2}+5z-\frac{i\overline{z}}{|z|}-iz+iC ,\\
+\end{split} 
+\end{equation}
+\begin{equation}
+\boxed{f(z) = z^{2}+(5-i)z-\frac{i}{z}+iC.}
+\end{equation}
+Funkce $f(z)$ je holomorfní na $\mathbb{C}\setminus\lbrace 0\rbrace$, protože je součtem polynomu (holomorfní na $\mathbb{C}$) a racionální funkce (až na kořeny polynomu ve jmenovateli holomorfní funkce).
+\end{description}
+\end{document}
